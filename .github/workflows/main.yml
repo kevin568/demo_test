@@ -32,7 +32,7 @@ jobs:
         run: npm install
 
       - name: Start development server
-        run: CI=VERBOSE npm start
+        run: CI=VERBOSE npm start &
         
       - name: Wait for localhost:3000 to be ready
         run: npx wait-on http://localhost:3000
