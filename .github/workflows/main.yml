@@ -1,0 +1,41 @@
+name: CI/CD Workflow
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  unit_test:
+    name: Unit Test with Jest
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run Jest Tests
+        run: npm test
+
+  e2e_test:
+    name: End-to-End Test with Cypress
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Start development server
+        run: npm start &
+
+      - name: Wait for localhost:3000 to be ready
+        run: npx wait-on http://localhost:3000
+
+      - name: Run Cypress Tests
+        run: npx cypress run
