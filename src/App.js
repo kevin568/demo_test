@@ -1,6 +1,6 @@
-import logo from "./logo.svg";
+// import logo from "./logo.svg";
 import "./App.css";
-import react, { useState } from "react";
+import { useState } from "react";
 import { Container, Title } from "./Style.css";
 import { Control } from "./component/Control";
 import { Content } from "./component/Content";
