@@ -6,36 +6,43 @@ on:
       - master
 
 jobs:
-  unit_test:
-    name: Unit Test with Jest
+  test:
+    name: Run Tests
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      # Caching node modules
+      - name: Cache node modules
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
       - name: Install Dependencies
         run: npm install
 
+      # Jest unit tests
       - name: Run Jest Tests
         run: npm test
 
-  e2e_test:
-    name: End-to-End Test with Cypress
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Install Dependencies
-        run: npm install
-
+      # Start development server
       - name: Start development server
-        run: CI=VERBOSE npm start &
-        
+        run: CI=VERBOSE npm start & echo "$!" > server.pid
+
+      # Wait for the development server to be ready
       - name: Wait for localhost:3000 to be ready
         run: npx wait-on http://localhost:3000
 
+      # Cypress end-to-end tests
       - name: Run Cypress Tests
         run: npx cypress run
+
+      # Stop development server
+      - name: Stop development server
+        run: kill $(cat server.pid)
+
