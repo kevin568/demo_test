@@ -30,9 +30,10 @@ jobs:
       - name: Run Jest Tests
         run: npm test
 
-      # Start development server
-      - name: Start development server
-        run: CI=VERBOSE npm start & echo "$!" > server.pid
+      - name: Build React App
+        run: npm run build
+      - name: Start static server
+        run: npx serve -s build & echo "$!" > server.pid
 
       # Wait for the development server to be ready
       - name: Wait for localhost:3000 to be ready
