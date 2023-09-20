@@ -41,6 +41,7 @@
     "@babel/preset-react": "^7.22.15",
     "babel-jest": "^29.7.0",
     "cypress": "^13.2.0",
+    "serve": "^14.2.1",
     "wait-on": "^7.0.1"
   }
 }
