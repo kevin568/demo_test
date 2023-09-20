@@ -1,24 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import react, { useState } from "react";
+import { Container, Title } from "./Style.css";
+import { Control } from "./component/Control";
+import { Content } from "./component/Content";
+import { TEST_ID } from "./config/testId";
 
 function App() {
+  const [list, setList] = useState([]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container>
+      <Title data-testid={TEST_ID.APP_TITLE}>Todo List Sample</Title>
+      <Control list={list} setList={setList} />
+      <Content list={list} setList={setList} />
+    </Container>
   );
 }
 

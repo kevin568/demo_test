@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Todo List App container should be rendered 1`] = `
+<div
+  class="sc-beyTiQ cVCinz"
+>
+  <div
+    class="sc-hLQTFJ dKSoTB"
+    data-testid="APP_TITLE"
+  >
+    Todo List Sample
+  </div>
+  <div
+    class="sc-guDMob irPtzy"
+  >
+    <input
+      class="sc-dmyDmy fLldPA"
+      data-testid="TODO_INPUT"
+      value=""
+    />
+    <button
+      class="sc-eDLKEg jhIUPb"
+      data-testid="ADD_BUTTON"
+    >
+      Add
+    </button>
+  </div>
+  <div
+    class="sc-guDMob irPtzy"
+  >
+    <ul
+      class="sc-jTQDJr kPNYHK"
+    />
+  </div>
+</div>
+`;
